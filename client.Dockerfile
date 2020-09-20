@@ -1,7 +1,18 @@
-FROM node:latest
+FROM alpine:latest
 
-LABEL Timothy Matara <matara.timothy@gmail.com>
+LABEL maintainer="Timothy Matara <matara.timothy@gmail.com>"
+LABEL build_date="2020-09-20"
 
+ARG BUILD_DATE
+
+# Labels
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.name="Yolomy Client"
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.description="Yolomy website front-end application"
+
+RUN echo "Build Date: $BUILD_DATE"
+RUN apk update && apk add nodejs nodejs-npm
 COPY client /client
 WORKDIR /client
 RUN npm install
