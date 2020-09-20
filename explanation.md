@@ -36,5 +36,11 @@ The base image selected is alpine because of it's small size and complete packag
 
 ## Docker image tagging
 
-- Client image tagged as tmatara/yolo-client:1.0
-- Backend image tagged as tmatara/yolo-backend:1.0
+- Client image tagged as tmatara_yolo-client:1.0-alpine
+- Backend image tagged as tmatara_yolo-backend:1.0-alpine
+
+# Docker Hub repo where to find the images
+
+- kitmikai/tmatara_yolo_client
+- kitmikai/tmatara_yolo_backend
+- kitmikai/tmatara_mongo
