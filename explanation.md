@@ -13,3 +13,28 @@ The base image selected is alpine because of it's small size and complete packag
 - EXPOSE - gives information about the container port to expose
 - CMD - executes a command once the container has been created
 - ARG - added build argument for the date of build during the build process
+
+## Git workflow
+
+- Clone the [**repo**](https://github.com/kitmikai/yolo)
+- Add mongodb connect parameters required
+- Add Dockerfile for client side
+- Add Dockerfile for backend
+- Add dockerignore file
+- Add docker-compose.yml file
+- Add ARG, LABEL and LABEL-SCHEMA
+- Add ARG, LABEL and LABEL-SCHEMA
+- Add image and args to the build
+- Moved .dockerignore to project root directory
+- Add explanation file to project
+
+## Successful running of the containers
+
+- cd into the yolo folder
+- Run the command docker-compose --build
+- Once the build is successful visit localhost:3000
+
+## Docker image tagging
+
+- Client image tagged as tmatara/yolo-client:1.0
+- Backend image tagged as tmatara/yolo-backend:1.0
