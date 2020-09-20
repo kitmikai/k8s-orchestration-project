@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   client:
-    image: tmatara/yolo-client:alpine
+    image: tmatara/yolo-client:1.0
     build:
       context: .
       args:
@@ -12,7 +12,7 @@ services:
     ports:
       - 3000:3000
   backend:
-    image: tmatara/yolo-backend:alpine
+    image: tmatara/yolo-backend:1.0
     build:
       context: .
       dockerfile: backend.Dockerfile
