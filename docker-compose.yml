@@ -2,6 +2,7 @@ version: "3.7"
 services:
   client:
     image: tmatara/yolo-client:1.0
+    restart: unless-stopped
     build:
       context: .
       args:
@@ -11,16 +12,35 @@ services:
       - backend
     ports:
       - 3000:3000
+    networks:
+      - yolonet
+
   backend:
     image: tmatara/yolo-backend:1.0
+    restart: unless-stopped
     build:
       context: .
       dockerfile: backend.Dockerfile
     ports:
       - 5000:5000
+    networks:
+      - yolonet
     depends_on:
       - mongo
+      
   mongo:
     image: mongo
     ports:
       - 27017:27017
+    volumes:
+      - dbdata:/data/dbdata
+    networks:
+      - yolonet
+
+networks:
+  yolonet:
+    driver: bridge
+
+volumes:
+  dbdata:
+  
