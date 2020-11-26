@@ -1,38 +1,58 @@
-## Base image used
+#### Orchestration on Google Cloud
+## Create a free tier Google Cloud account
 
-The base image selected is alpine because of it's small size and complete package index as documented by [**docker**](https://docs.docker.com/samples), thus resulting to small images.
+Create a free tier account by visiting [**Free Google Cloud**](https://cloud.google.com/free), 20 free products and USD300 free credit is issued upon subscription. You must provide a valid debit card and a one time charge (USD1) will run for confirmation.
 
-## Dockerfile directives used
+## gcloud
+gcloud is a command-line tool for managing resources on Google Cloud Platform and is provided as part of Google Cloud SDK. To install, follow the instructions [**here**](https://cloud.google.com/sdk/docs/install) to set up on Debian/Ubuntu.
 
-- FROM - the starting point to build the image in this case Alpine
-- LABEL - Labels have been used to specify metadata. Label-schema has been used to
-  specify Docker build date/time, description, name and version Labels that would be embedded inside the Docker image. By embedding as much metadata as possible to the Docker image, it stands on its own in orchestration, management, and build tools.
-- RUN - runs commands in the specified image layer
-- COPY - copies files to the container
-- WORKDIR - selects the directory in the container as the working directory, similar to the change directory command
-- EXPOSE - gives information about the container port to expose
-- CMD - executes a command once the container has been created
-- ARG - added build argument for the date of build during the build process
+## Initialize and authenticate gcloud
+You can now authenticate gcloud with your Google account on your terminal by running the initialiation command. 
+gcloud init
+To check your current configurations, run the configuration list command
+gcloud config list
+Set the project property in the core section, run
+glcoud config set project myProjectID
+Set the zone property in the compute section, run
+gcloud config set compute/zone asia-east1-b
+Confirm the changes again
+gcloud config list
 
-## Git workflow
+## kubectl
+Install the kubectl command on your local computer by running
+gcloud components install kubectl
+Verify the version by running
+kubectl version
+## Install additional components
+Install a few required components 
+gcloud components install kind
 
-- Clone the [**repo**](https://github.com/kitmikai/yolo)
-- Add mongodb connect parameters required
-- Add Dockerfile for client side
-- Add Dockerfile for backend
-- Add dockerignore file
-- Add docker-compose.yml file
-- Add ARG, LABEL and LABEL-SCHEMA
-- Add ARG, LABEL and LABEL-SCHEMA
-- Add image and args to the build
-- Moved .dockerignore to project root directory
-- Add explanation file to project
+## Create a project on gcloud
+
+## Create a cluster
+You can create a cluster using the terminal by running the command
+gcloud container clusters create yolo-cluster
+The cluster may take some time to complete. Once it's done, again set it as the default cluster
+gcloud config set container/cluster yolo-cluster
+
+Also check the project dashboard to reflect the recently created cluster
+# Clone the repository
+git clone
+cd yolo
+## Setup a project on gcloud
+
+## Upload Docker images to the Google Cloud Registry (gcr)
+
+## Login to gcloud from your terminal
+While still in the yolo folder run the below command:
+gcloud container clusters get-credentials yolo-cluster --zone us-central1-c --project emerald-griffin-205008
+## Create a namespace, deploy
+kubectl create namespace yolomy
+kubectl create -f client-deploy.yml
+
 
 ## Successful running of the containers
-
-- cd into the yolo folder
-- Run the command docker-compose --build
-- Once the build is successful visit localhost:3000
+kubectl get all -n yolomy
 
 ## Docker image tagging
 
@@ -44,3 +64,6 @@ The base image selected is alpine because of it's small size and complete packag
 - kitmikai/tmatara_yolo_client
 - kitmikai/tmatara_yolo_backend
 - kitmikai/tmatara_mongo
+
+## Resources and articles used
+A tutorial by John Kariuki hosted on [**Scotch.io**](https://scotch.io/tutorials/google-cloud-platform-i-deploy-a-docker-app-to-google-container-engine-with-kubernetes)
