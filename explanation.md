@@ -54,16 +54,11 @@ kubectl create -f client-deploy.yml
 ## Successful running of the containers
 kubectl get all -n yolomy
 
-## Docker image tagging
+# Images used in the gcloud container registry
 
-- Client image tagged as tmatara_yolo-client:1.0-alpine
-- Backend image tagged as tmatara_yolo-backend:1.0-alpine
-
-# Docker Hub repo where to find the images
-
-- kitmikai/tmatara_yolo_client
-- kitmikai/tmatara_yolo_backend
-- kitmikai/tmatara_mongo
+- gcr.io/emerald-griffin-205008/yolo-client:0.0.1
+- gcr.io/emerald-griffin-205008/yolo-backend:0.0.1
+- gcr.io/emerald-griffin-205008/yolo-mongo:0.0.1
 
 ## Resources and articles used
 A tutorial by John Kariuki hosted on [**Scotch.io**](https://scotch.io/tutorials/google-cloud-platform-i-deploy-a-docker-app-to-google-container-engine-with-kubernetes)
